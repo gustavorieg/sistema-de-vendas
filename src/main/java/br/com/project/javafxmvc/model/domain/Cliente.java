@@ -5,11 +5,25 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String telefone;
+    private int codigo;
 
-    public Cliente(String nome, String cpf, String telefone) {
+    public Cliente(String nome, String cpf, String telefone, int codigo) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
+        this.codigo = codigo;
+    }
+
+    public Cliente() {
+
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {

@@ -3,14 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.javafxmvc.controller.FXMLVBoxMainController">
    <children>
       <MenuBar>
         <menus>
           <Menu mnemonicParsing="false" text="Cadastros">
             <items>
               <MenuItem mnemonicParsing="false" text="Categorias" />
-                  <MenuItem fx:id="menuItemCategoriasClientes" mnemonicParsing="false" text="Clientes" />
+                  <MenuItem fx:id="menuItemCategoriasClientes" mnemonicParsing="false" onAction="#handlemenuItemCadastrosClientes" text="Clientes" />
                   <MenuItem fx:id="menuItemCadastrosProdutos" mnemonicParsing="false" text="Produtos" />
             </items>
           </Menu>
@@ -31,6 +31,6 @@
             </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane fx:id="anchorPane" prefHeight="374.0" prefWidth="600.0" />
+      <AnchorPane fx:id="anchorPane" prefHeight="374.0" prefWidth="600.0"  />
    </children>
 </VBox>

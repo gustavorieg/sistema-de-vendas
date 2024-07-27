@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.javafxmvc.view.CadastrosClientes">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.javafxmvc.controller.CadastrosClientesController">
    <children>
       <SplitPane prefHeight="400.0" prefWidth="256.0">
          <items>
@@ -12,8 +12,8 @@
                <children>
                   <TableView prefHeight="398.0" prefWidth="251.0">
                     <columns>
-                      <TableColumn fx:id="tblViewNome" prefWidth="125.19997864961624" text="Nome" />
-                      <TableColumn fx:id="tblViewCPF" prefWidth="125.20001220703125" text="CPF" />
+                      <TableColumn fx:id="tblColumnNome" prefWidth="125.19997864961624" text="Nome" />
+                      <TableColumn fx:id="tblColumnCPF" prefWidth="125.20001220703125" text="CPF" />
                     </columns>
                   </TableView>
                </children>
@@ -42,10 +42,10 @@
                   <Label text="Nome" GridPane.rowIndex="1" />
                   <Label text="CPF" GridPane.rowIndex="2" />
                   <Label text="Telefone" GridPane.rowIndex="3" />
-                  <Label fx:id="lblGridPaneCodigo" GridPane.columnIndex="1" />
-                  <Label fx:id="lblGridPaneNome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="lblGridPaneCPF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="lblGridPaneTelefone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="lblGridPaneCodigo" prefHeight="18.0" prefWidth="166.0" GridPane.columnIndex="1" />
+                  <Label fx:id="lblGridPaneNome" prefHeight="18.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="lblGridPaneCPF" prefHeight="18.0" prefWidth="104.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="lblGridPaneTelefone" prefHeight="18.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
             <Button fx:id="btnInserir" layoutX="94.0" layoutY="349.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="67.0" text="Inserir" />

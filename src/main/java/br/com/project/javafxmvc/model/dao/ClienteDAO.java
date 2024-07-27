@@ -4,7 +4,10 @@ import br.com.project.javafxmvc.model.domain.Cliente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,5 +35,25 @@ public class ClienteDAO {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+    }
+
+    public List<Cliente> listar() throws SQLException {
+        String sql = "SELECT * FROM clientes";
+        List<Cliente> retorno = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setCodigo(resultado.getInt("id"));
+                cliente.setNome(resultado.getString("nome"));
+                cliente.setCpf(resultado.getString("cpf"));
+                cliente.setCpf(resultado.getString("telefone"));
+                retorno.add(cliente);
+            }
+    } catch (SQLException ex) {
+        Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return retorno;
     }
 }

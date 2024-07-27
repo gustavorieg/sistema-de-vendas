@@ -2,7 +2,7 @@ package br.com.project.javafxmvc.model.database;
 
 import java.sql.*;
 
-public class Conexao {
+public class Database {
 
     public Connection conectar() {
         try {
