@@ -48,9 +48,9 @@
                   <Label fx:id="lblGridPaneTelefone" prefHeight="18.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button fx:id="btnInserir" layoutX="94.0" layoutY="349.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="67.0" text="Inserir" />
-            <Button fx:id="btnAlterar" layoutX="171.0" layoutY="349.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="67.0" text="Alterar" />
-            <Button fx:id="btnRemover" layoutX="248.0" layoutY="349.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" text="Remover" />
+            <Button fx:id="btnInserir" layoutX="94.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleButtonInserir" prefHeight="26.0" prefWidth="67.0" text="Inserir" />
+            <Button fx:id="btnAlterar" layoutX="171.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleButtonAlterar" prefHeight="26.0" prefWidth="67.0" text="Alterar" />
+            <Button fx:id="btnRemover" layoutX="248.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleButtonExcluir" prefHeight="26.0" prefWidth="79.0" text="Remover" />
          </children>
       </AnchorPane>
    </children>

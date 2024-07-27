@@ -56,4 +56,33 @@ public class ClienteDAO {
     }
     return retorno;
     }
+
+    public boolean alterar(Cliente cliente) throws SQLException {
+        String sql = "UPDATE clientes SET nome=?, cpf=?, telefone=? WHERE id=?";
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getCpf());
+            stmt.setString(3, cliente.getTelefone());
+            stmt.setInt(4, cliente.getCodigo());
+            stmt.execute();
+            return true;
+        } catch (SQLException ex){
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
+    public boolean remover(Cliente cliente) throws SQLException {
+        String sql = "DELETE FROM clientes WHERE id=?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, cliente.getCodigo());
+            stmt.execute();
+            return true;
+        } catch (SQLException ex){
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 }

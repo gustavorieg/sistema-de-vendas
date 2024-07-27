@@ -4,17 +4,20 @@ import br.com.project.javafxmvc.model.dao.ClienteDAO;
 import br.com.project.javafxmvc.model.database.Database;
 import br.com.project.javafxmvc.model.database.DatabaseFactory;
 import br.com.project.javafxmvc.model.domain.Cliente;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -82,4 +85,65 @@ public class CadastrosClientesController implements Initializable {
         lblGridPaneCPF.setText(cliente.getCpf());
         lblGridPaneTelefone.setText(cliente.getTelefone());
     }
+
+    @FXML
+    public void handleButtonInserir() throws SQLException, IOException {
+        Cliente cliente = new Cliente();
+        boolean buttonConfirmarClicked = showCadastrosClientesDialog(cliente);
+        if (buttonConfirmarClicked){
+            clienteDAO.inserir(cliente);
+            carregarTableViewCliente();
+        }
+    }
+
+    @FXML
+    public void handleButtonAlterar() throws SQLException, IOException {
+       Cliente cliente = tblViewClientes.getSelectionModel().getSelectedItem();
+       if(cliente != null){
+           boolean buttonConfirmarClicked = showCadastrosClientesDialog(cliente);
+           if (buttonConfirmarClicked){
+               clienteDAO.alterar(cliente);
+               carregarTableViewCliente();
+           } else {
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+               alert.setContentText("Por favort, escolja um cliente na Tabela!");
+               alert.show();
+           }
+       }
+    }
+
+    @FXML
+    public void handleButtonExcluir() throws SQLException {
+        Cliente cliente = tblViewClientes.getSelectionModel().getSelectedItem();
+        if(cliente != null){
+            clienteDAO.remover(cliente);
+            carregarTableViewCliente();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Por favor, escolha um cliente na Tabela!");
+            alert.show();
+        }
+    }
+
+    @FXML
+    public boolean showCadastrosClientesDialog(Cliente cliente) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL url = new File("src/main/java/br/com/project/javafxmvc/view/CadastrosClientesDialog.fxml").toURI().toURL();
+        AnchorPane page = (AnchorPane) loader.load(url);
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Cadastro de Clientes");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+
+        CadastrosClientesDialogController controller = loader.getController();
+        controller.setDialogStage(dialogStage);
+        controller.setCliente(cliente);
+
+        dialogStage.showAndWait();
+
+        return controller.isButtonConfirmarClicked();
+    }
+
+
 }
