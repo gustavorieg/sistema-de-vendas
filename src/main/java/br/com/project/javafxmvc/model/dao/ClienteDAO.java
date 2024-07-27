@@ -48,7 +48,7 @@ public class ClienteDAO {
                 cliente.setCodigo(resultado.getInt("id"));
                 cliente.setNome(resultado.getString("nome"));
                 cliente.setCpf(resultado.getString("cpf"));
-                cliente.setCpf(resultado.getString("telefone"));
+                cliente.setTelefone(resultado.getString("telefone"));
                 retorno.add(cliente);
             }
     } catch (SQLException ex) {

@@ -60,6 +60,10 @@ public class CadastrosClientesController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        tblViewClientes.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> selecionarItemTableViewClientes(newValue)
+        );
     }
 
     public void carregarTableViewCliente() throws SQLException {
@@ -70,5 +74,12 @@ public class CadastrosClientesController implements Initializable {
 
         observableListClientes = FXCollections.observableArrayList(listClientes);
         tblViewClientes.setItems(observableListClientes);
+    }
+
+    public void selecionarItemTableViewClientes(Cliente cliente){
+        lblGridPaneCodigo.setText(Integer.toString(cliente.getCodigo()));
+        lblGridPaneNome.setText(cliente.getNome());
+        lblGridPaneCPF.setText(cliente.getCpf());
+        lblGridPaneTelefone.setText(cliente.getTelefone());
     }
 }

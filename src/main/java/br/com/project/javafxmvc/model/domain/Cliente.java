@@ -18,7 +18,7 @@ public class Cliente {
 
     }
 
-    public int getCodigo() {
+     public int getCodigo() {
         return codigo;
     }
 
