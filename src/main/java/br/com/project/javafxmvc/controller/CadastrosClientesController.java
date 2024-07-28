@@ -80,10 +80,12 @@ public class CadastrosClientesController implements Initializable {
     }
 
     public void selecionarItemTableViewClientes(Cliente cliente){
-        lblGridPaneCodigo.setText(Integer.toString(cliente.getCodigo()));
-        lblGridPaneNome.setText(cliente.getNome());
-        lblGridPaneCPF.setText(cliente.getCpf());
-        lblGridPaneTelefone.setText(cliente.getTelefone());
+        if (cliente != null) {
+            lblGridPaneCodigo.setText(Integer.toString(cliente.getCodigo()));
+            lblGridPaneNome.setText(cliente.getNome());
+            lblGridPaneCPF.setText(cliente.getCpf());
+            lblGridPaneTelefone.setText(cliente.getTelefone());
+        }
     }
 
     @FXML
@@ -104,11 +106,11 @@ public class CadastrosClientesController implements Initializable {
            if (buttonConfirmarClicked){
                clienteDAO.alterar(cliente);
                carregarTableViewCliente();
-           } else {
-               Alert alert = new Alert(Alert.AlertType.ERROR);
-               alert.setContentText("Por favort, escolja um cliente na Tabela!");
-               alert.show();
            }
+       }else {
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setContentText("Por favor, escolha um cliente na Tabela!");
+           alert.show();
        }
     }
 
@@ -129,7 +131,7 @@ public class CadastrosClientesController implements Initializable {
     public boolean showCadastrosClientesDialog(Cliente cliente) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL url = new File("src/main/java/br/com/project/javafxmvc/view/CadastrosClientesDialog.fxml").toURI().toURL();
-        AnchorPane page = (AnchorPane) loader.load(url);
+        AnchorPane page = (AnchorPane) loader.load(url.openStream());
 
         Stage dialogStage = new Stage();
         dialogStage.setTitle("Cadastro de Clientes");

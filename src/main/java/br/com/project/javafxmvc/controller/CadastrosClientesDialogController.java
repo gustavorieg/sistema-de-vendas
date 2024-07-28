@@ -3,6 +3,7 @@ package br.com.project.javafxmvc.controller;
 import br.com.project.javafxmvc.model.domain.Cliente;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -61,22 +62,55 @@ public class CadastrosClientesDialogController implements Initializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+        this.txtFieldClienteNome.setText(cliente.getNome());
+        this.txtFieldClienteCPF.setText(cliente.getCpf());
+        this.txtFieldClienteTelefone.setText(cliente.getTelefone());
     }
 
     @FXML
     public void handleButtonConfirmar() {
-        cliente.setNome(txtFieldClienteNome.getText());
-        cliente.setCpf(txtFieldClienteCPF.getText());
-        cliente.setTelefone(txtFieldClienteTelefone.getText());
+        if(validarEntradaDeDados()){
+            cliente.setNome(txtFieldClienteNome.getText());
+            cliente.setCpf(txtFieldClienteCPF.getText());
+            cliente.setTelefone(txtFieldClienteTelefone.getText());
 
-        buttonConfirmarClicked = true;
-        dialogStage.close();
+            buttonConfirmarClicked = true;
+            dialogStage.close();
+        }
     }
 
     @FXML
     public void handleButtonCancelar() {
         dialogStage.close();
     }
+
+    @FXML
+    private boolean validarEntradaDeDados(){
+        String errorMessage = "";
+
+        if (txtFieldClienteNome.getText() == null || txtFieldClienteNome.getText().isEmpty()){
+            errorMessage += "Nome inválido!\n";
+        }
+        if (txtFieldClienteCPF.getText() == null || txtFieldClienteCPF.getText().isEmpty()){
+            errorMessage += "CPF inválido!\n";
+        }
+        if (txtFieldClienteTelefone.getText() == null || txtFieldClienteTelefone.getText().isEmpty()){
+            errorMessage += "Telefone inválido!\n";
+        }
+
+        if(errorMessage.isEmpty()){
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro no cadastro");
+            alert.setHeaderText("campos inválidos, por favor, corrija...");
+            alert.setContentText(errorMessage);
+            alert.show();
+            return false;
+        }
+
+    }
+
 }
 
 
